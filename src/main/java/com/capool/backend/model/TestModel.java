@@ -34,6 +34,14 @@ public class TestModel {
 		return this.msg;
 	}
 	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("TEST_MODEL[ID: %d, MSG: %s]", this.id, this.msg);
