@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capool.backend.model.TestModel;
-import com.capool.backend.service.TestService;
+import com.capool.backend.service.test.TestService;
 
 @RequestMapping("/test")
 @RestController
