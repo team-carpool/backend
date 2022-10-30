@@ -28,8 +28,8 @@ public class UserModel {
     private String lastName;
 
     @Id
-    @Column(name = "EMAIL", nullable = false)
-    private String email;
+    @Column(name = "EMAIL_ID", nullable = false)
+    private String emailId;
 
     @Column(name = "PASSWORD", nullable = false)
     private String password;
@@ -70,7 +70,7 @@ public class UserModel {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.emailId = email;
         this.password = password;
         this.createdOn = createdOn;
     }
@@ -102,11 +102,11 @@ public class UserModel {
     }
 
     public String getEmail() {
-        return email;
+        return emailId;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.emailId = email;
     }
 
     public String getPassword() {
@@ -209,7 +209,7 @@ public class UserModel {
     public String toString() {
         return String.format(
                 "UserModel [userId=%d, firstName=%s, lastName=%s, email=%s,  phone=%d, country=%s, hasVehicle=%b, rold=%s, isLoggedIn=%b, createdOn=%s, updatedOn=%s]",
-                userId, firstName, lastName, email, phone, country, hasVehicle, userRole, isLoggedIn, createdOn, updatedOn);
+                userId, firstName, lastName, emailId, phone, country, hasVehicle, userRole, isLoggedIn, createdOn, updatedOn);
     }
 
 }

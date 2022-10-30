@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.carpool.backend.exception.useroperation.UserAlreadyExistException;
 import com.carpool.backend.model.UserModel;
 import com.carpool.backend.repository.UserRepository;
 import com.carpool.constants.UserRole;
@@ -18,29 +19,29 @@ public class UserServiceImpl implements UserService{
 	UserRepository userRepo;
 
 	@Override
-	public void signup(String firstName, String lastName, String email, String password, LocalDate createdDate) 
-			throws Exception{
+	public void signup(String firstName, String lastName, String emailId, String password, LocalDate createdDate) 
+			throws Exception {
 		
 		UserRole role = UserRole.USER;
 		
 		// TODO: Encrypt password
 		
-		UserModel user = new UserModel(firstName, lastName, email, password, createdDate);
+		UserModel user = new UserModel(firstName, lastName, emailId, password, createdDate);
 		user.setRole(role);
 		
-		if(!userRepo.existsById(email)) {
+		if(!userRepo.existsById(emailId)) {
 			userRepo.save(user);
 			// TODO: login
 		}
 		else {
-			throw new Exception();
+			throw new UserAlreadyExistException(String.format("User Already Exist: %s", emailId));
 		}
 		
 		
 	}
 
 	@Override
-	public void login(String email, String password) {
+	public void login(String emailId, String password) {
 		// TODO Auto-generated method stub
 		
 	}
