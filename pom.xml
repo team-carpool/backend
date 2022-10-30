@@ -27,12 +27,15 @@
 		</dependency>
 
 		<dependency>
-			<!-- <groupId>mysql</groupId>
+			<!-- MySQL -->
+			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope> -->
-			<groupId>org.postgresql</groupId>
+			<scope>runtime</scope>
+			
+			<!-- Postgresql -->
+			<!-- <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
-		    <version>42.5.0</version><!--$NO-MVN-MAN-VER$-->
+		    <version>42.5.0</version> --> <!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

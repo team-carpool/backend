@@ -1,8 +1,8 @@
-package com.capool.backend.service.test;
+package com.carpool.backend.service.test;
 
 import java.util.List;
 
-import com.capool.backend.model.TestModel;
+import com.carpool.backend.model.TestModel;
 
 public interface TestService {
 	public void saveEntity(TestModel tm);

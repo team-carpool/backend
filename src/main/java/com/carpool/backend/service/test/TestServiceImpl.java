@@ -1,4 +1,4 @@
-package com.capool.backend.service.test;
+package com.carpool.backend.service.test;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.capool.backend.model.TestModel;
-import com.capool.backend.repository.TestRepository;
+import com.carpool.backend.model.TestModel;
+import com.carpool.backend.repository.TestRepository;
 
 @Service
 @Transactional

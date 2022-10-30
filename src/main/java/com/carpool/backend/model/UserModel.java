@@ -1,11 +1,18 @@
-package com.capool.backend.model;
+package com.carpool.backend.model;
+
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.carpool.constants.UserGender;
+import com.carpool.constants.UserRole;
 
 @Entity
 @Table(name = "USER_TABLE")
@@ -29,35 +36,46 @@ public class UserModel {
 
     @Column(name = "PHONE_NUMBER")
     private int phone;
+    
     private String country;
 
     private boolean hasVehicle;
-    private VehicleModel vehicleList;
+    
+    @OneToMany(mappedBy = "vehicleOwner")
+    private List<VehicleModel> vehicleList;
 
     @Column(name = "GENDER", nullable = true)
-    private String gender;
+    private UserGender gender;
 
     private String currentLocation;
 
-    @Column(name = "ROLE", nullable = false)
-    private String role;
+    @Column(name = "USER_ROLE", nullable = false)
+    private UserRole userRole;
+    
     private boolean isLoggedIn;
-    private String createdOn;
-    private String updatedOn;
+    
+    private boolean isDeleted;
+    
+    private LocalDate createdOn;
+    
+    private LocalDate updatedOn;
 
-    public UserModel() {
+    // constructors
+    
+    protected UserModel() {
         super();
     }
 
-    public UserModel(String firstName, String lastName, String email, String password) {
+    public UserModel(String firstName, String lastName, String email, String password, LocalDate createdOn) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.createdOn = createdOn;
     }
 
-    // Geter and Setters for all the fields
+    // Getter and Setters for all the fields
 
     public Long getUserId() {
         return userId;
@@ -123,19 +141,19 @@ public class UserModel {
         this.hasVehicle = hasVehicle;
     }
 
-    public VehicleModel getVehicleList() {
+    public List<VehicleModel> getVehicleList() {
         return vehicleList;
     }
 
-    public void setVehicleList(VehicleModel vehicleList) {
+    public void setVehicleList(List<VehicleModel> vehicleList) {
         this.vehicleList = vehicleList;
     }
 
-    public String getGender() {
+    public UserGender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(UserGender gender) {
         this.gender = gender;
     }
 
@@ -147,12 +165,12 @@ public class UserModel {
         this.currentLocation = currentLocation;
     }
 
-    public String getRole() {
-        return role;
+    public UserRole getRole() {
+        return userRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(UserRole role) {
+        this.userRole = role;
     }
 
     public boolean isLoggedIn() {
@@ -162,20 +180,28 @@ public class UserModel {
     public void setLoggedIn(boolean isLoggedIn) {
         this.isLoggedIn = isLoggedIn;
     }
+    
+    public boolean isDeleted() {
+		return isDeleted;
+	}
 
-    public String getCreatedOn() {
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+    public LocalDate getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(String createdOn) {
+    public void setCreatedOn(LocalDate createdOn) {
         this.createdOn = createdOn;
     }
 
-    public String getUpdatedOn() {
+    public LocalDate getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(String updatedOn) {
+    public void setUpdatedOn(LocalDate updatedOn) {
         this.updatedOn = updatedOn;
     }
 
@@ -183,7 +209,7 @@ public class UserModel {
     public String toString() {
         return String.format(
                 "UserModel [userId=%d, firstName=%s, lastName=%s, email=%s,  phone=%d, country=%s, hasVehicle=%b, rold=%s, isLoggedIn=%b, createdOn=%s, updatedOn=%s]",
-                userId, firstName, lastName, email, phone, country, hasVehicle, role, isLoggedIn, createdOn, updatedOn);
+                userId, firstName, lastName, email, phone, country, hasVehicle, userRole, isLoggedIn, createdOn, updatedOn);
     }
 
 }

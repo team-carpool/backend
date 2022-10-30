@@ -1,14 +1,19 @@
-package com.capool.backend.model;
+package com.carpool.backend.model;
 
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "VEHICLE_TABLE")
 public class VehicleModel {
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	
+	@Id
+    @Column(name = "VEHICLE_NUMBER", nullable = false)
+    private String vehicleNumber;
 
     @Column(name = "VEHICLE_TYPE", nullable = false)
     private String vehicleType;
@@ -16,28 +21,27 @@ public class VehicleModel {
     @Column(name = "VEHICLE_BRAND", nullable = false)
     private String vehicleBrand;
 
-    @Id
-    @Column(name = "VEHICLE_NUMBER", nullable = false)
-    private String vehicleNumber;
-
-    @Column(name = "VEHICLE_MODEL", nullable = false)
+    @Column(name = "VEHICLE_MODEL", nullable = true)
     private String vehicleModel;
 
     @Column(name = "VEHICLE_COLOR", nullable = true)
     private String vehicleColor;
 
     @Column(name = "VEHICLE_CAPACITY", nullable = false)
-    private String vehicleCapacity;
+    private short vehicleCapacity;
 
-    @Column(name = "VEHICLE_OWNER", nullable = false)
-    private String vehicleOwner;
+    @ManyToOne
+    @JoinColumn(name = "VEHICLE_OWNER")  // FOREIGN KEY COLUMN NAME
+    private UserModel vehicleOwner;
 
-    public VehicleModel() {
+    // Constructors
+    
+    protected VehicleModel() {
         super();
     }
 
     public VehicleModel(String vehicleType, String vehicleNumber, String vehicleModel, String vehicleColor,
-            String vehicleCapacity, String vehicleOwner) {
+            short vehicleCapacity, UserModel vehicleOwner) {
         super();
         this.vehicleType = vehicleType;
         this.vehicleNumber = vehicleNumber;
@@ -47,15 +51,7 @@ public class VehicleModel {
         this.vehicleOwner = vehicleOwner;
     }
 
-    // Geter and Setters for all the fields
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // Getter and Setters for all the fields
 
     public String getVehicleType() {
         return vehicleType;
@@ -97,27 +93,27 @@ public class VehicleModel {
         this.vehicleColor = vehicleColor;
     }
 
-    public String getVehicleCapacity() {
+    public short getVehicleCapacity() {
         return vehicleCapacity;
     }
 
-    public void setVehicleCapacity(String vehicleCapacity) {
+    public void setVehicleCapacity(short vehicleCapacity) {
         this.vehicleCapacity = vehicleCapacity;
     }
 
-    public String getVehicleOwner() {
+    public UserModel getVehicleOwner() {
         return vehicleOwner;
     }
 
-    public void setVehicleOwner(String vehicleOwner) {
+    public void setVehicleOwner(UserModel vehicleOwner) {
         this.vehicleOwner = vehicleOwner;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "VehicleModel [ id=%d, vehicleType=%s, vehicleNumber=%s, vehicleModel=%s, vehicleColor=%s, vehicleCapacity=%s, vehicleOwner=%s]",
-                id, vehicleType, vehicleNumber, vehicleModel, vehicleColor, vehicleCapacity, vehicleOwner);
+                "VehicleModel [vehicleType=%s, vehicleNumber=%s, vehicleModel=%s, vehicleColor=%s, vehicleCapacity=%d, vehicleOwner=%s]",
+                vehicleType, vehicleNumber, vehicleModel, vehicleColor, vehicleCapacity, vehicleOwner);
 
     }
 
