@@ -208,8 +208,8 @@ public class UserModel {
     @Override
     public String toString() {
         return String.format(
-                "UserModel [userId=%d, firstName=%s, lastName=%s, email=%s,  phone=%d, country=%s, hasVehicle=%b, rold=%s, isLoggedIn=%b, createdOn=%s, updatedOn=%s]",
-                userId, firstName, lastName, emailId, phone, country, hasVehicle, userRole, isLoggedIn, createdOn, updatedOn);
+                "UserModel [userId=%d, firstName=%s, lastName=%s, email=%s, country=%s, hasVehicle=%b, role=%s, isLoggedIn=%b, createdOn=%s]", 
+                userId, firstName, lastName, emailId, country, hasVehicle, userRole, isLoggedIn, createdOn);
     }
 
 }
