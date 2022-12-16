@@ -1,4 +1,4 @@
-package com.capool.backend.model;
+package com.carpool.backend.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
