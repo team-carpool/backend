@@ -15,7 +15,7 @@ import com.carpool.backend.exception.useroperation.UserAlreadyExistException;
 import com.carpool.backend.service.user.UserService;
 import com.carpool.constants.UserResponse;
 
-@RequestMapping("/users")
+@RequestMapping("/user")
 @RestController
 public class UserController {
 
@@ -39,6 +39,7 @@ public class UserController {
 			return new ResponseEntity<>(UserResponse.USER_ALREADY_EXIST, HttpStatus.ALREADY_REPORTED);
 		}
 		catch(Exception ex) {
+			System.out.println(ex);;
 			return new ResponseEntity<>(UserResponse.USER_DATA_NOT_PROPER, HttpStatus.EXPECTATION_FAILED);
 		}
 	}

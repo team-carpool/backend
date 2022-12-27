@@ -24,12 +24,12 @@ public class UserServiceImpl implements UserService{
 		
 		UserRole role = UserRole.USER;
 		
-		// TODO: Encrypt password
+		// TODO[vulnerability]: Encrypt password
 		
 		UserModel user = new UserModel(firstName, lastName, emailId, password, createdDate);
 		user.setRole(role);
 		
-		if(!userRepo.existsById(emailId)) {
+		if(!userRepo.existsByEmailId(emailId)) {
 			userRepo.save(user);
 			// TODO: login
 		}
@@ -46,5 +46,9 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	
+	@Override
+	public Long getUserIdByEmailId(String emailId) {
+		return userRepo.findUserIdByEmailId(emailId);
+	}
 	
 }
