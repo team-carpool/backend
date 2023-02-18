@@ -14,10 +14,16 @@ import com.carpool.backend.model.TravelModel;
 public interface TravelRepository extends JpaRepository<TravelModel, Long>{
 	
 	@Query("SELECT new com.carpool.backend.dto.TravellerDto(sourceCoord, destinationCoord, isDriving, userId) FROM TravelModel tm "
-			+ "WHERE tm.emailId = :emailId")
+			+ "WHERE tm.emailId = :emailId and status = 0")
 	public TravellerDto getActiveTravellerById(@Param(value = "emailId") String emailId);
 	
+	
 	@Query("SELECT new com.carpool.backend.dto.TravellerDto(sourceCoord, destinationCoord, isDriving, userId) FROM TravelModel tm "
-			+ "WHERE tm.isDriving = false")
+			+ "WHERE tm.isDriving = false and status = 0")
 	public List<TravellerDto> getActivePassengers();
+	
+	
+	@Query("SELECT new com.carpool.backend.dto.TravellerDto(sourceCoord, destinationCoord, isDriving, userId) FROM TravelModel tm "
+			+ "WHERE tm.isDriving=true and status=0")
+	public List<TravellerDto> getActiveDrivers();
 }

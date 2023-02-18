@@ -1,5 +1,9 @@
 package com.carpool.backend.dto;
 
+/**
+ * TravellerDto is for DB transactions.
+ * It will store the data of user fetched from DB
+ */
 public class TravellerDto {
 	private String sourceCoord;
 	private String destinationCoord;

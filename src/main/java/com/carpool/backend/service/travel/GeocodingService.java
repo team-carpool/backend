@@ -1,10 +1,10 @@
 package com.carpool.backend.service.travel;
 
-import java.util.Map;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.carpool.backend.dto.GeoDistanceDto;
 
 @Service
 class GeocodingService {
@@ -29,9 +29,8 @@ class GeocodingService {
 		.append("?")
 		.append(overviewParam);
 		
-		ResponseEntity<Map> res = restTemplate.getForEntity(url.toString(), Map.class);
-		System.out.println("**************************"+ res.getBody());
-		
-		return 0;
+		GeoDistanceDto res = restTemplate.getForObject(url.toString(), GeoDistanceDto.class);
+		System.out.println("**************************"+ res.getDistance());
+		return res.getDistance().intValue();
 	}
 }

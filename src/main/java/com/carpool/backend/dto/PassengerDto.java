@@ -1,5 +1,8 @@
 package com.carpool.backend.dto;
 
+/* This DTO is different from TravellerDto as in TravellerDto distance is present
+ * TravellerDto is for db transactions.
+ */
 public class PassengerDto {
 	
 	private Long userId;
@@ -7,8 +10,9 @@ public class PassengerDto {
 	private String destinationCoord;
 	
 	/* Distance that need to be covered 
-	 * if this passenger selected */
-	private int distanceInMeter;
+	 * if this passenger selected
+	 */
+	private int totalDistanceWithPassenger;
 	
 	public PassengerDto() {}
 	
@@ -36,10 +40,10 @@ public class PassengerDto {
 		this.destinationCoord = destinationCoord;
 	}
 	public int getDistance() {
-		return distanceInMeter;
+		return totalDistanceWithPassenger;
 	}
 	public void setDistance(int distance) {
-		this.distanceInMeter = distance;
+		this.totalDistanceWithPassenger = distance;
 	}
 
 }

@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService{
 		return userRepo.findUserIdByEmailId(emailId);
 	}
 	
+	@Override
+	public String getCurrentLoc(Long userId) {
+		return userRepo.getCurrLocationByUserId(userId);
+	}
+	
 }

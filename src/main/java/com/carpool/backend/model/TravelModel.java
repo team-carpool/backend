@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.carpool.constants.TravelStatus;
+
 @Entity
 @Table(name = "TRAVEL_TABLE")
 public class TravelModel {
@@ -42,8 +44,8 @@ public class TravelModel {
 	@Column(name = "VEHICLE_NUMBER", nullable = true)
 	private String vehicleNum;
 	
-	@Column(name = "STATUS", nullable = true)
-	private String status;
+	@Column(name = "STATUS", nullable = false)
+	private TravelStatus status;
 	
 	// passengerTravelId
 	// driver_id
@@ -138,11 +140,11 @@ public class TravelModel {
 		this.vehicleNum = vehicleNum;
 	}
 	
-	public String getStatus() {
+	public TravelStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(TravelStatus status) {
 		this.status = status;
 	}
 	

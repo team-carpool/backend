@@ -14,5 +14,8 @@ public interface UserRepository extends JpaRepository<UserModel, Long>{
 	
 	@Query("SELECT userId FROM UserModel um WHERE emailId = :email_id")
 	public Long findUserIdByEmailId(@Param(value = "email_id") String id);
+	
+	@Query("SELECT currentLocation from UserModel um WHERE userId = :userId")
+	public String getCurrLocationByUserId(@Param(value = "userId") Long userId);
 
 }

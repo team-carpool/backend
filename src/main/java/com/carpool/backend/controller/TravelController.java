@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.carpool.backend.dto.DriverDto;
 import com.carpool.backend.dto.PassengerDto;
 import com.carpool.backend.service.travel.TravelService;
 import com.carpool.constants.TravelResponse;
@@ -56,12 +57,26 @@ public class TravelController {
 	
 	@GetMapping("/passenger")
 	public ResponseEntity<List<PassengerDto>> getPassenger(
-			@RequestParam(value="user_email_id")String driverEmailId){
+			@RequestParam(value="user_email_id")String driverEmailId) {
 		// TODO[vulnerability]: if just email is passing from req param
 		
 		try {
-			List<PassengerDto> passengers =  travelService.getNearestPassenger(driverEmailId);
+			List<PassengerDto> passengers = travelService.getNearestPassenger(driverEmailId);
 			return new ResponseEntity<>(passengers, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@GetMapping("/driver")
+	public ResponseEntity<List<DriverDto>> getDriver(@RequestParam(value = "user_email_id")
+			String passengerEmailId) {
+		
+		try {
+			List<DriverDto> drivers = travelService.getNearestDriver(passengerEmailId);
+			return new ResponseEntity<>(drivers, HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

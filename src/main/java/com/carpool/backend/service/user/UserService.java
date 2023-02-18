@@ -9,5 +9,7 @@ public interface UserService {
 	public void login(String emailId, String password);
 	
 	public Long getUserIdByEmailId(String emailId);
+	
+	public String getCurrentLoc(Long userId);
 
 }
