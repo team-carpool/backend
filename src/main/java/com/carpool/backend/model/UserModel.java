@@ -10,15 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.carpool.constants.UserGender;
 import com.carpool.constants.UserRole;
 
 @Entity
-@Table(name = "USER_TABLE")
+@Table(name = "USER_TABLE", uniqueConstraints = @UniqueConstraint(columnNames = {"EMAIL_ID"}))
 public class UserModel {
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID", nullable = false)
     private Long userId;
 
     @Column(name = "FIRST_NAME", nullable = false)
@@ -27,7 +30,6 @@ public class UserModel {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Id
     @Column(name = "EMAIL_ID", nullable = false)
     private String emailId;
 

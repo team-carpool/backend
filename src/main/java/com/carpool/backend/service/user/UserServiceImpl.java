@@ -13,7 +13,7 @@ import com.carpool.constants.UserRole;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	UserRepository userRepo;
@@ -24,12 +24,12 @@ public class UserServiceImpl implements UserService{
 		
 		UserRole role = UserRole.USER;
 		
-		// TODO: Encrypt password
+		// TODO[vulnerability]: Encrypt password
 		
 		UserModel user = new UserModel(firstName, lastName, emailId, password, createdDate);
 		user.setRole(role);
 		
-		if(!userRepo.existsById(emailId)) {
+		if(!userRepo.existsByEmailId(emailId)) {
 			userRepo.save(user);
 			// TODO: login
 		}
@@ -41,10 +41,26 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void login(String emailId, String password) {
-		// TODO Auto-generated method stub
+	public String login(String emailId, String password) {
+		UserModel user = userRepo.findByEmailId(emailId);
+		if(user==null) {
+			return "USER_NOT_EXIST";
+		}
+		if(user.getPassword().equals(password)) {
+			return emailId+";"+password;
+		}
+		return "PASSWORD_MISSMATCH";
 		
 	}
 	
+	@Override
+	public Long getUserIdByEmailId(String emailId) {
+		return userRepo.findUserIdByEmailId(emailId);
+	}
+	
+	@Override
+	public String getCurrentLoc(Long userId) {
+		return userRepo.getCurrLocationByUserId(userId);
+	}
 	
 }

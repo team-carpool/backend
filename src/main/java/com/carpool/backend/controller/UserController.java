@@ -6,16 +6,18 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.carpool.backend.exception.useroperation.UserAlreadyExistException;
 import com.carpool.backend.service.user.UserService;
 import com.carpool.constants.UserResponse;
 
-@RequestMapping("/users")
+@RequestMapping("/user")
 @RestController
 public class UserController {
 
@@ -39,8 +41,15 @@ public class UserController {
 			return new ResponseEntity<>(UserResponse.USER_ALREADY_EXIST, HttpStatus.ALREADY_REPORTED);
 		}
 		catch(Exception ex) {
+			System.out.println(ex);;
 			return new ResponseEntity<>(UserResponse.USER_DATA_NOT_PROPER, HttpStatus.EXPECTATION_FAILED);
 		}
+	}
+	
+	@GetMapping("/login")
+	public ResponseEntity<String> login(@RequestParam(value="emailId") String emailId, @RequestParam(value="password") String password) {
+		String res = userService.login(emailId, password);
+		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 
 }
