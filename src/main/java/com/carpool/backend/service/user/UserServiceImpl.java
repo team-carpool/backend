@@ -47,7 +47,8 @@ public class UserServiceImpl implements UserService {
 			return "USER_NOT_EXIST";
 		}
 		if(user.getPassword().equals(password)) {
-			return emailId+";"+password;
+			Long userId = userRepo.findUserIdByEmailId(emailId);
+			return emailId+";"+userId;
 		}
 		return "PASSWORD_MISSMATCH";
 		
