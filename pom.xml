@@ -28,14 +28,14 @@
 
 		<dependency>
 			<!-- MySQL -->
-			<groupId>mysql</groupId>
+			<!-- <groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<scope>runtime</scope> -->
 			
 			<!-- Postgresql -->
-			<!-- <groupId>org.postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-		    <version>42.5.0</version> --> <!--$NO-MVN-MAN-VER$-->
+			<groupId>org.postgresql</groupId>
+		    	<artifactId>postgresql</artifactId>
+		    	<version>42.5.0</version> <!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
