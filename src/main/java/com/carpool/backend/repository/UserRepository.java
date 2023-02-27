@@ -19,5 +19,9 @@ public interface UserRepository extends JpaRepository<UserModel, Long>{
 	
 	@Query("SELECT currentLocation from UserModel um WHERE userId = :userId")
 	public String getCurrLocationByUserId(@Param(value = "userId") Long userId);
+	
+	@Query("UPDATE UserModel SET currentLocation = :loc WHERE userId = :userId")
+	public void updateLocationByUserId(@Param(value = "userId") Long userId,
+			@Param(value = "loc") String loc);
 
 }

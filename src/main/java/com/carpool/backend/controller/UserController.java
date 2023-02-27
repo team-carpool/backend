@@ -53,5 +53,13 @@ public class UserController {
 		String res = userService.login(emailId, password);
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
+	
+	@PostMapping("/currentloc")
+	public ResponseEntity<String> updateLocation(@RequestBody Map<String, String> req) {
+		Long userId = Long.parseLong(req.get("userId"));
+		String loc = req.get("coord");
+		String res = userService.updateLocation(userId, loc);
+		return new ResponseEntity<>(res, HttpStatus.OK);
+	}
 
 }
