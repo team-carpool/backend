@@ -2,6 +2,7 @@ package com.carpool.backend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,7 @@ public interface UserRepository extends JpaRepository<UserModel, Long>{
 	@Query("SELECT currentLocation from UserModel um WHERE userId = :userId")
 	public String getCurrLocationByUserId(@Param(value = "userId") Long userId);
 	
+	@Modifying
 	@Query("UPDATE UserModel SET currentLocation = :loc WHERE userId = :userId")
 	public void updateLocationByUserId(@Param(value = "userId") Long userId,
 			@Param(value = "loc") String loc);
