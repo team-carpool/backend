@@ -12,4 +12,6 @@ public interface UserService {
 	
 	public String getCurrentLoc(Long userId);
 
+	public String updateLocation(Long userId, String loc);
+
 }

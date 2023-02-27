@@ -55,6 +55,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	public String updateLocation(Long userId, String loc) {
+		userRepo.updateLocationByUserId(userId, loc);
+		return "DONE";
+	}
+	
+	@Override
 	public Long getUserIdByEmailId(String emailId) {
 		return userRepo.findUserIdByEmailId(emailId);
 	}
