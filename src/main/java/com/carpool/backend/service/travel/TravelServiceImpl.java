@@ -44,6 +44,7 @@ public class TravelServiceImpl implements TravelService {
 		
 		travelData.setStatus(TravelStatus.ACTIVE);
 		
+		travelRepo.setPreviousTravelStatus(userId);
 		travelRepo.save(travelData);
 		
 	}
