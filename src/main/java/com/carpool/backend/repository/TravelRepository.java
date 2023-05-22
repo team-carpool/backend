@@ -29,7 +29,7 @@ public interface TravelRepository extends JpaRepository<TravelModel, Long>{
 	public List<TravellerDto> getActiveDrivers();
 	
 	@Modifying
-	@Query("UPDATE UserModel SET status = 1 WHERE userId = :userId")
+	@Query("UPDATE TravelModel SET status = 1 WHERE userId = :userId")
 	public void setPreviousTravelStatus(@Param(value = "userId") Long userId);
 	
 }
